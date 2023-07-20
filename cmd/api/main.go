@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"time"
+	"greenlight.millansharma.net/internal/data"
 
 	// Import the pq driver so that it can register itself with the database/sql
 	// package. Note that we alias this import to the blank identifier, to stop the Go
@@ -43,7 +44,11 @@ type config struct {
 type application struct {
 	config config
 	logger *log.Logger
+	models data.Models
 }
+
+// since I didn't configigure this as env variable
+// var GREENLIGHT_DB_DNS='postgres://greenlight:goroutine@localhost/greenlight'
 
 func main() {
 	// Declare an instance of the config struct.
@@ -89,6 +94,7 @@ func main() {
 	app := &application{
 		config: cfg,
 		logger: logger,
+		models: data.NewModels(db),
 	}
 	// Declare a new servemux and add a /v1/healthcheck route which dispatches requests
 	// to the healthcheckHandler method (which we will create in a moment).
