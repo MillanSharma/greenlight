@@ -48,7 +48,7 @@ type application struct {
 }
 
 // since I didn't configigure this as env variable
-// var GREENLIGHT_DB_DNS='postgres://greenlight:goroutine@localhost/greenlight'
+// var GREENLIGHT_DB_DNS='postgres://greenlight:goroutine@localhost/greenlight?sslmode=disable'
 
 func main() {
 	// Declare an instance of the config struct.
